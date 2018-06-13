@@ -67,3 +67,7 @@ func main() {
 # Dependencies
 
 None. Tested with golang 1.10.2
+
+# Copyright
+
+Copyright (c) 2018 Rick.
