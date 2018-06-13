@@ -1,4 +1,7 @@
 # tourcms-golang
+
+[![Build Status](https://travis-ci.org/popwalker/tourcms-golang.svg?branch=master)](https://travis-ci.org/popwalker/tourcms-golang)
+
 Go wrapper for the [TourCMS API](http://www.tourcms.com/support/api/mp/)
 
 # Install

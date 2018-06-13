@@ -4,6 +4,8 @@ go:
   - 1.10.x
   - tip
 
+sudo: required
+
 script:
   - go test ./... -race -coverprofile=coverage.txt -covermode=atomic
 
