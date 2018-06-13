@@ -38,9 +38,9 @@ func main() {
 }
 ```
 
-> for more usage, please see [examples](https://github.com/popwalker/tourcms-golang/example/example.go)
+> for more usage, please see [examples](https://github.com/popwalker/tourcms-golang/blob/master/example/example.go)
 
-# List of Methods included in this package
+# List of methods included in this package
 
 - APIRateLimit
 - ListChannels
