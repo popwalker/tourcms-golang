@@ -13,7 +13,7 @@ func Hmac(key, data string) []byte {
 	return hmac.Sum(nil)
 }
 
-// GetHttpDateTime get a date string formatted for http header
+// GetHTTPDateTime get a date string formatted for http header
 func GetHTTPDateTime() string {
 	t := time.Now().UTC()
 	return t.Format("Mon, 02 Jan 2006 15:04:05 GMT")
