@@ -1,8 +1,9 @@
 package example
 
 import (
-	"fmt"
 	"encoding/xml"
+	"fmt"
+
 	"github.com/popwalker/tourcms-golang/client"
 )
 
@@ -50,7 +51,7 @@ func ShowChannel() error {
 func ChannelPerformance() error {
 	c := client.NewTourCmsClient(marketPlaceID, privateAPIKey, "")
 
-	var path = ""
+	var path string
 	if channelID == "0" {
 		path = "/p/channels/performance.xml"
 	} else {

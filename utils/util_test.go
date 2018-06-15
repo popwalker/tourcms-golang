@@ -1,10 +1,10 @@
 package utils
 
 import (
-	"testing"
-	"net/url"
 	"encoding/base64"
+	"net/url"
 	"reflect"
+	"testing"
 )
 
 func TestHmac(t *testing.T) {

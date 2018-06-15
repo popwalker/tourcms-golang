@@ -1,24 +1,29 @@
 package client
 
 import (
-	"fmt"
-	"time"
-	"strings"
-	"encoding/base64"
-	"net/url"
-	"net/http"
 	"bytes"
+	"encoding/base64"
+	"fmt"
 	"io/ioutil"
+	"net/http"
+	"net/url"
+	"strings"
+	"time"
+
 	"github.com/popwalker/tourcms-golang/utils"
 )
 
+// Client is a tourCms client which include some method to connect to tourCms API
 type Client struct {
 	MarketPlaceId string
 	PrivateApiKey string
 }
 
+// BaseURI is a base URI for tourCms
 var BaseURI = "https://api.tourcms.com"
 
+// NewTourCmsClient return a tourCms client.
+// Can be used to connect to tourCms API
 func NewTourCmsClient(marketPlaceID, apiKey, baseURI string) *Client {
 	if baseURI != "" {
 		BaseURI = baseURI
@@ -30,6 +35,7 @@ func NewTourCmsClient(marketPlaceID, apiKey, baseURI string) *Client {
 	}
 }
 
+// Request will create a http client and request to tourCms API
 func (c *Client) Request(path string, method string, channelID string, postData []byte) ([]byte, error) {
 	if channelID == "" {
 		channelID = "0"
@@ -54,7 +60,7 @@ func (c *Client) Request(path string, method string, channelID string, postData 
 	}
 
 	req.Header.Set("Content-Type", "text/xml;charset=\"utf-8\"")
-	req.Header.Set("Date", utils.GetHttpDateTime())
+	req.Header.Set("Date", utils.GetHTTPDateTime())
 	req.Header.Set("Authorization", "TourCMS "+channelID+":"+c.MarketPlaceId+":"+signature)
 
 	response, err := client.Do(req)
@@ -71,6 +77,7 @@ func (c *Client) Request(path string, method string, channelID string, postData 
 	return b, nil
 }
 
+// GenerateSignature generate a signature.will be used for every request
 func (c *Client) GenerateSignature(path, method, channel, outboundTime string) string {
 	strToSign := strings.Trim(channel+"/"+c.MarketPlaceId+"/"+method+"/"+outboundTime+path, " ")
 	dig := utils.Hmac(c.PrivateApiKey, strToSign)
@@ -98,7 +105,7 @@ func (c *Client) ChannelPerformance(path, channelID string) ([]byte, error) {
 	return c.Request(path, http.MethodGet, channelID, nil)
 }
 
-// // SearchTour Create a search results page, a page listing all tours or a category page.
+// SearchTour Create a search results page, a page listing all tours or a category page.
 func (c *Client) SearchTour(path, channelID string) ([]byte, error) {
 	return c.Request(path, http.MethodGet, channelID, nil)
 }
